@@ -1,0 +1,20 @@
+h1 {
+    font-size: 42px;
+    text-align: center;
+    color: brown;
+}
+
+p {
+    padding-bottom: 15px;
+    color: blueviolet;
+}
+
+.formatHeader {
+    text-align: left;
+    color: tomato;
+}
+
+#tomatoPicture {
+    height: 150;
+    width: 200;
+}
