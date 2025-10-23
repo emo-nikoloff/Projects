@@ -5,8 +5,8 @@ Welcome to my personal programming projects repository! This repository contains
 ## Repository Structure
 The repository is organized into folders by programming language:
 
-- `C#/` - Projects written in C#
-- `Python/` - Projects written in Python
+- `C#/` - Projects written in **C#**
+- `Python/` - Projects written in **Python**
 
 Each folder contains individual projects with their own code files, and in some cases, additional resources or documentation.
 
