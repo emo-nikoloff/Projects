@@ -12,7 +12,6 @@ The repository is organized into folders by programming language:
 
 ## Purpose
 The main goal of this repository is to:
-
 - Experiment with new programming concepts and techniques
 - Keep track of my personal coding projects
 - Share my work with others for learning or collaboration
