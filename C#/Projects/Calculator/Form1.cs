@@ -1,4 +1,3 @@
-using System.Numerics;
 using System.Text;
 
 namespace Calculator;
@@ -35,13 +34,20 @@ public partial class Form1 : Form
                     }
                     break;
                 case "ButtonEquals":
-                    if (!Result.ToString().Contains('='))
+                    if (!Result.ToString().Contains('=') && Result.Length != 0)
                     {
-                        Result.Append('=');
                         calculate();
                     }
                     break;
                 default:
+                    if ("+-x÷".Contains(button.Text) && Result.Length == 0)
+                    {
+                        return;
+                    }
+                    else if (Label1.Text == "Undenified" && button.Name != "ButtonClear")
+                    {
+                        return;
+                    }
                     Result.Append(button.Text);
                     break;
             }
@@ -51,20 +57,24 @@ public partial class Form1 : Form
 
     private void calculate()
     {
-        char[] operators = { '+', '-', '*', '/' };
+        char[] operators = { '+', '-', 'x', '÷', '%' };
 
-        string mathExpression = Result.ToString().Split('=')[0];
-        string[] expressionDigits = mathExpression.Split(operators);
-        char[] expressionOperators = mathExpression.Where(op => operators.Contains(op)).ToArray();
+        string[] expressionDigits = Result.ToString().Split(operators);
+        char[] expressionOperators = Result.ToString().Where(op => operators.Contains(op)).ToArray();
 
-        BigInteger sum = BigInteger.Parse(expressionDigits[0]);
+        double sum = double.Parse(expressionDigits[0]);
 
         for (int i = 1; i < expressionDigits.Length; i++)
         {
-            BigInteger digit = BigInteger.Parse(expressionDigits[i]);
-
-            //int digit = int.Parse(expressionDigits[i]);
             char operation = expressionOperators[i - 1];
+
+            if (operation == '%')
+            {
+                sum /= 100;
+                break;
+            }
+
+            double digit = double.Parse(expressionDigits[i]);
 
             switch (operation)
             {
@@ -74,11 +84,25 @@ public partial class Form1 : Form
                 case '-':
                     sum -= digit;
                     break;
+                case 'x':
+                    sum *= digit;
+                    break;
+                case '÷':
+                    if (digit != 0)
+                    {
+                        sum /= digit;
+                    }
+                    else
+                    {
+                        Result.Clear();
+                        Result.Append("Undenified");
+                        return;
+                    }
+                    break;
             }
         }
 
         Result.Clear();
         Result.Append(sum);
-        //Result.Append("Hello, world!");
     }
 }

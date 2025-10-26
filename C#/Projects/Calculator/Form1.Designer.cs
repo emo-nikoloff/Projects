@@ -21,7 +21,7 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(4F, 8F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 10F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(160, 440);
             this.Name = "Form1";
@@ -266,9 +266,9 @@
             // ButtonPercent
             // 
             this.ButtonPercent = new System.Windows.Forms.Button();
-            this.ButtonPercent.Location = new Point(80, 240);
+            this.ButtonPercent.Location = new System.Drawing.Point(80, 240);
             this.ButtonPercent.Name = "ButtonPercent";
-            this.ButtonPercent.Size = new Size(40, 40);
+            this.ButtonPercent.Size = new System.Drawing.Size(40, 40);
             this.ButtonPercent.TabIndex = 0;
             this.ButtonPercent.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.ButtonPercent.BackColor = System.Drawing.Color.FromArgb(51, 51, 51);
@@ -279,13 +279,13 @@
             // Label
             //
             this.Label1 = new System.Windows.Forms.Label();
-            this.Label1.Location = new System.Drawing.Point(0, 5);
+            this.Label1.Location = new System.Drawing.Point(0, 200);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(160, 40);
+            this.Label1.Size = new System.Drawing.Size(160, 30);
             this.Label1.TabIndex = 1;
             this.Label1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.Label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Label1.TextAlign = ContentAlignment.TopLeft;
+            this.Label1.TextAlign = ContentAlignment.BottomRight;
             this.Label1.Font = new Font("Arial", 14, FontStyle.Bold);
             // 
             // Form controls collection
