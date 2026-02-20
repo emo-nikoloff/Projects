@@ -1,8 +1,52 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<Car>
+
+@{
+    ViewData["Title"] = "Parking System";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Parking system</h1>
+</div>
+
+<div class="container">
+    <h3>Parking System</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Car Make</th>
+                <th>Plate Number</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@car.CarMake</td>
+                    <td>@car.PlateNumber</td>
+                    <td>
+                        <form action="/Car/DeleteCar" method="post">
+                            <input type="hidden" name="plateNumber" value="@car.PlateNumber" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+    <h3>New Car</h3>
+    <form action="/Car/AddCar" method="post">
+        <div class="form-group">
+            <label>Make</label>
+            <input type="text" name="CarMake" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Plate #</label>
+            <input type="text" name="PlateNumber" class="form-control" />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
 </div>
