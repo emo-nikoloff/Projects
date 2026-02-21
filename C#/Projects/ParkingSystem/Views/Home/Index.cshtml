@@ -25,7 +25,7 @@
                     <td>@car.CarMake</td>
                     <td>@car.PlateNumber</td>
                     <td>
-                        <form action="/Car/DeleteCar" method="post">
+                        <form asp-controller="Car" asp-action="DeleteCar" method="post">
                             <input type="hidden" name="plateNumber" value="@car.PlateNumber" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
@@ -37,7 +37,7 @@
 
     <hr />
     <h3>New Car</h3>
-    <form action="/Car/AddCar" method="post">
+    <form asp-controller="Car" asp-action="AddCar" method="post">
         <div class="form-group">
             <label>Make</label>
             <input type="text" name="CarMake" class="form-control" />
