@@ -1,3 +1,6 @@
+using ExpenseTracker.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace ExpenseTracker;
 
 public class Program
@@ -8,6 +11,7 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddDbContext<ExpensesDbContext>(options => options.UseInMemoryDatabase("ExpensesDb"));
 
         var app = builder.Build();
 

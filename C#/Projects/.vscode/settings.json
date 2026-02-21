@@ -1,0 +1,5 @@
+{
+    "workbench.colorTheme": "One Dark",
+    "css.format.spaceAroundSelectorSeparator": true,
+    "html.format.wrapLineLength": 200
+}

@@ -2,7 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model Expense
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to the Expense Tracker</h1>
+    <a asp-action="Expenses" class="btn btn-primary">Overview</a>
+    <a asp-action="CreateEditExpense" class="btn btn-secondary">Create a tracker</a>
 </div>
