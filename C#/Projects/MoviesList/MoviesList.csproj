@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Data\" />
     <Folder Include="Views\HelloWorld\" />
+    <Folder Include="Views\Movies\" />
   </ItemGroup>
 
   <ItemGroup>
