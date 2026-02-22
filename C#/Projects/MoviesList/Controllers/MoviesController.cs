@@ -58,8 +58,6 @@ namespace MoviesList.Controllers
         {
             if (ModelState.IsValid)
             {
-                movie.ReleaseDate = DateTime.SpecifyKind(movie.ReleaseDate, DateTimeKind.Utc);
-
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,8 +97,6 @@ namespace MoviesList.Controllers
             {
                 try
                 {
-                    movie.ReleaseDate = DateTime.SpecifyKind(movie.ReleaseDate, DateTimeKind.Utc);
-
                     _context.Update(movie);
                     await _context.SaveChangesAsync();
                 }

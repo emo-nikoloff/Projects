@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MoviesList.Data;
+using MoviesList.Models;
 
 
 namespace MoviesList;
@@ -9,6 +10,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
@@ -17,6 +19,13 @@ public class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("MoviesListContext") ?? throw new InvalidOperationException("Connection string 'MoviesListContext' not found.")));
 
         var app = builder.Build();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+
+            SeedData.Initialize(services);
+        }
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
