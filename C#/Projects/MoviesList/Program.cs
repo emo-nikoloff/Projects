@@ -10,11 +10,11 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddDbContext<MoviesListContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("MoviesListContext") ?? throw new InvalidOperationException("Connection string 'MoviesListContext' not found.")));
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddDbContext<MoviesListContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("MoviesListContext") ?? throw new InvalidOperationException("Connection string 'MoviesListContext' not found.")));
 
         var app = builder.Build();
 
