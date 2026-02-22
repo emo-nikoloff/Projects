@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MvcMovie.Data;
+using MoviesList.Data;
+
+
 namespace MoviesList;
 
 public class Program
@@ -8,8 +10,8 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddDbContext<MvcMovieContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
+        builder.Services.AddDbContext<MoviesListContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("MoviesListContext") ?? throw new InvalidOperationException("Connection string 'MoviesListContext' not found.")));
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoviesList.Models;
 
-namespace MvcMovie.Data
+namespace MoviesList.Data
 {
-    public class MvcMovieContext : DbContext
+    public class MoviesListContext : DbContext
     {
-        public MvcMovieContext (DbContextOptions<MvcMovieContext> options)
+        public MoviesListContext (DbContextOptions<MoviesListContext> options)
             : base(options)
         {
         }
