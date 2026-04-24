@@ -5,7 +5,7 @@ namespace SimpleSnake.Core;
 
 public class Engine
 {
-    private const int GameSpeed = 150;
+    private const int InitialGameSpeed = 125;
 
     private const int PlayAreaWidth = 61;
     private const int PlayAreaHeight = 30;
@@ -21,11 +21,12 @@ public class Engine
     private Snake snake;
     private Point avaiableFood;
 
+    private int gameSpeed;
+
     public Engine(IRenderer renderer, IInput input, IRandomGenerator randomGenerator)
     {
         this.renderer = renderer;
         this.input = input;
-        snake = new(SnakeStartHeadLeft, SnakeStartHeadTop, SnakeLength);
         this.randomGenerator = randomGenerator;
     }
 
@@ -35,7 +36,7 @@ public class Engine
 
         while (true)
         {
-            Thread.Sleep(GameSpeed);
+            Thread.Sleep(gameSpeed);
 
             Point removedPoint = snake.Move();
 
@@ -45,18 +46,63 @@ public class Engine
                 snake.ChangeDirection(inputDirection.Value);
             }
 
+            if (!SnakePositionIsValid())
+            {
+                renderer.RenderGameOver();
+                break;
+            }
+
+            CheckForFood();
+
             renderer.RenderSnake(snake, removedPoint);
+        }
+
+        if (input.WaitForRestart())
+        {
+            Run();
         }
     }
 
     public void InitializeGame()
     {
+        gameSpeed = InitialGameSpeed;
+        snake = new(SnakeStartHeadLeft, SnakeStartHeadTop, SnakeLength);
+
         renderer.Initialize(PlayAreaWidth, PlayAreaHeight);
         renderer.RenderWalls(PlayAreaWidth, PlayAreaHeight);
-
         renderer.RenderSnake(snake);
+
         GenerateNewFood();
-        renderer.RenderFood(avaiableFood);
+    }
+
+    private bool SnakePositionIsValid()
+    {
+        int countHeadPoints = 0;
+
+        foreach (Point point in snake.Body)
+        {
+            if (point.Left < 1 ||
+                point.Left >= PlayAreaWidth ||
+                point.Top < 1 ||
+                point.Top >= PlayAreaHeight)
+            {
+                return false;
+            }
+
+            Point snakeHead = snake.Head;
+
+            if (point.Left == snakeHead.Left && point.Top == snakeHead.Top)
+            {
+                countHeadPoints++;
+            }
+        }
+
+        if (countHeadPoints > 1)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private void GenerateNewFood()
@@ -87,6 +133,20 @@ public class Engine
                 avaiableFood = new(foodLeft, foodTop);
                 break;
             }
+        }
+
+        renderer.RenderFood(avaiableFood);
+    }
+
+    private void CheckForFood()
+    {
+        Point snakeHead = snake.Head;
+
+        if (avaiableFood.Left == snakeHead.Left && avaiableFood.Top == snakeHead.Top)
+        {
+            snake.IncreaseLength();
+            gameSpeed -= 5;
+            GenerateNewFood();
         }
     }
 }

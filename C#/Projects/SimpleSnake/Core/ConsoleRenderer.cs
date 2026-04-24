@@ -8,7 +8,7 @@ public class ConsoleRenderer : IRenderer
 {
     private const char WallSymbol = '\u25A0';
     private const char SnakeSymbol = '\u25CF';
-    private const char FoodSymbol = '\u00B0';
+    private const char FoodSymbol = '\uABC1';
 
     private int maxWidth;
     private int maxHeight;
@@ -68,14 +68,6 @@ public class ConsoleRenderer : IRenderer
 
         foreach (Point point in snake.Body)
         {
-            if (point.Left < 1 ||
-                point.Left >= maxWidth ||
-                point.Top < 1 ||
-                point.Top >= maxHeight)
-            {
-                throw new InvalidOperationException("Snake is outside of the play area!");
-            }
-
             Console.SetCursorPosition(point.Left, point.Top);
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.Write(SnakeSymbol);
@@ -85,7 +77,34 @@ public class ConsoleRenderer : IRenderer
     public void RenderFood(Point food)
     {
         Console.SetCursorPosition(food.Left, food.Top);
-        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.Write(FoodSymbol);
+    }
+
+    public void RenderGameOver()
+    {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+
+        string message1 = "GAME OVER!";
+        string message2 = "Press 'Esc' to exit...";
+        string message3 = "Press 'Enter' to restart";
+
+        int x1 = (maxWidth / 2) - (message1.Length / 2);
+        int y1 = maxHeight / 2 - 2;
+
+        Console.SetCursorPosition(x1, y1);
+        Console.Write(message1);
+
+        int x2 = (maxWidth / 2) - (message2.Length / 2);
+        int y2 = y1 + 1;
+
+        Console.SetCursorPosition(x2, y2);
+        Console.Write(message2);
+
+        int x3 = (maxWidth / 2) - (message3.Length / 2);
+        int y3 = y2 + 1;
+
+        Console.SetCursorPosition(x3, y3);
+        Console.Write(message3);
     }
 }

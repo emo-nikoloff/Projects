@@ -26,16 +26,21 @@ public class Snake
     {
         Point removedBodyPart = Body.Dequeue();
 
+        SetNewHead();
+
+        Body.Enqueue(Head);
+
+        return removedBodyPart;
+    }
+
+    private void SetNewHead()
+    {
         Point directionPoint = GetDirectionPoint();
 
         int newHeadLeft = Head.Left + directionPoint.Left;
         int newHeadTop = Head.Top + directionPoint.Top;
 
         Head = new(newHeadLeft, newHeadTop);
-
-        Body.Enqueue(Head);
-
-        return removedBodyPart;
     }
 
     private Point GetDirectionPoint()
@@ -57,6 +62,21 @@ public class Snake
 
     public void ChangeDirection(Direction direction)
     {
+        if (Direction == Direction.Left && direction == Direction.Right ||
+            Direction == Direction.Right && direction == Direction.Left ||
+            Direction == Direction.Up && direction == Direction.Down ||
+            Direction == Direction.Down && direction == Direction.Up)
+        {
+            return;
+        }
+
         Direction = direction;
+    }
+
+    public void IncreaseLength()
+    {
+        SetNewHead();
+
+        Body.Enqueue(Head);
     }
 }

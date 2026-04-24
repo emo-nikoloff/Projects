@@ -28,4 +28,21 @@ public class ConsoleInput : IInput
                 return null;
         }
     }
+
+    public bool WaitForRestart()
+    {
+        while (true)
+        {
+            var keyInfo = Console.ReadKey();
+
+            if (keyInfo.Key == ConsoleKey.Enter)
+            {
+                return true;
+            }
+            else if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                Environment.Exit(0);
+            }
+        }
+    }
 }

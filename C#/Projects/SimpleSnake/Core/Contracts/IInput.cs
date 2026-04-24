@@ -5,4 +5,5 @@ namespace SimpleSnake.Core.Contracts;
 public interface IInput
 {
     Direction? CheckForInput();
+    bool WaitForRestart();
 }
