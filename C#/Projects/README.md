@@ -8,6 +8,36 @@ Each project is created with the goal of improving my understanding of software 
 
 ## 📌 Projects Overview
 
+### 🎲 Random Sentences Generator (Console App)
+
+A console application that generates random sentences.
+
+**Features:**
+
+* Random word selection
+* Sentence construction logic
+* Lightweight and fast execution
+
+**Purpose:**
+Practice working with **arrays, randomness, and basic logic building**.
+
+---
+
+### 🐍 Simple Snake (Console App)
+
+A classic Snake game implemented in the console.
+
+**Features:**
+
+* Real-time movement
+* Score tracking
+* Game loop logic
+
+**Purpose:**
+Improve understanding of **game loops, input handling, and console rendering**.
+
+---
+
 ### 🧮 Calculator (WinForms)
 
 A simple desktop calculator application built with **Windows Forms**.
@@ -20,6 +50,21 @@ A simple desktop calculator application built with **Windows Forms**.
 
 **Purpose:**
 Practice working with **GUI applications** and event-driven programming in C#.
+
+---
+
+### 🅿️ Parking System (ASP.NET MVC)
+
+A web-based parking management system.
+
+**Features:**
+
+* Manage parking spots
+* Track vehicle entries/exits
+* Structured MVC design
+
+**Purpose:**
+Work on a more **real-world scenario project** and improve backend logic and application structure.
 
 ---
 
@@ -50,51 +95,6 @@ A web application for managing a collection of movies.
 
 **Purpose:**
 Practice CRUD operations and deepen understanding of **ASP.NET MVC**.
-
----
-
-### 🅿️ Parking System (ASP.NET MVC)
-
-A web-based parking management system.
-
-**Features:**
-
-* Manage parking spots
-* Track vehicle entries/exits
-* Structured MVC design
-
-**Purpose:**
-Work on a more **real-world scenario project** and improve backend logic and application structure.
-
----
-
-### 🎲 Random Sentences Generator (Console App)
-
-A console application that generates random sentences.
-
-**Features:**
-
-* Random word selection
-* Sentence construction logic
-* Lightweight and fast execution
-
-**Purpose:**
-Practice working with **arrays, randomness, and basic logic building**.
-
----
-
-### 🐍 Simple Snake (Console App)
-
-A classic Snake game implemented in the console.
-
-**Features:**
-
-* Real-time movement
-* Score tracking
-* Game loop logic
-
-**Purpose:**
-Improve understanding of **game loops, input handling, and console rendering**.
 
 ---
 

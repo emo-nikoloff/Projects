@@ -23,7 +23,6 @@ Although this is outside of C#, it helps build a foundation for **web developmen
 
 ## ⚠️ Notes
 
-* This is **not a full project**
 * Contains **practice files and examples only**
 * Focus is on learning core concepts
 

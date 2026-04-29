@@ -21,7 +21,6 @@ This folder includes **basic exercises and practice code** related to building a
 
 ## ⚠️ Notes
 
-* This is **not a complete project**
 * Contains **practice and learning code only**
 * Used for experimenting with concepts
 
