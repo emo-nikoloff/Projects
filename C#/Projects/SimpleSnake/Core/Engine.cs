@@ -10,16 +10,16 @@ public class Engine
     private const int PlayAreaWidth = 61;
     private const int PlayAreaHeight = 30;
 
-    private const int SnakeStartHeadLeft = 7;
-    private const int SnakeStartHeadTop = 1;
+    private const int SnakeStartHeadX = 7;
+    private const int SnakeStartHeadY = 1;
     private const int SnakeLength = 6;
 
     private IRenderer renderer;
     private IInput input;
     private IRandomGenerator randomGenerator;
 
-    private Snake snake;
-    private Point avaiableFood;
+    private Snake snake = default!;
+    private Point food = default!;
 
     private int gameSpeed;
 
@@ -66,9 +66,9 @@ public class Engine
     public void InitializeGame()
     {
         gameSpeed = InitialGameSpeed;
-        snake = new(SnakeStartHeadLeft, SnakeStartHeadTop, SnakeLength);
+        snake = new(SnakeStartHeadX, SnakeStartHeadY, SnakeLength);
 
-        renderer.Initialize(PlayAreaWidth, PlayAreaHeight);
+        renderer.InitializeField(PlayAreaWidth, PlayAreaHeight);
         renderer.RenderWalls(PlayAreaWidth, PlayAreaHeight);
         renderer.RenderSnake(snake);
 
@@ -81,17 +81,17 @@ public class Engine
 
         foreach (Point point in snake.Body)
         {
-            if (point.Left < 1 ||
-                point.Left >= PlayAreaWidth ||
-                point.Top < 1 ||
-                point.Top >= PlayAreaHeight)
+            if (point.X < 1 ||
+                point.X >= PlayAreaWidth ||
+                point.Y < 1 ||
+                point.Y >= PlayAreaHeight)
             {
                 return false;
             }
 
             Point snakeHead = snake.Head;
 
-            if (point.Left == snakeHead.Left && point.Top == snakeHead.Top)
+            if (point.X == snakeHead.X && point.Y == snakeHead.Y)
             {
                 countHeadPoints++;
             }
@@ -111,17 +111,17 @@ public class Engine
         {
             bool isValidFood = true;
 
-            int foodLeft = randomGenerator.NextNumber(1, PlayAreaWidth - 1);
-            int foodTop = randomGenerator.NextNumber(1, PlayAreaHeight - 1);
+            int foodX = randomGenerator.NextNumber(1, PlayAreaWidth - 1);
+            int foodY = randomGenerator.NextNumber(1, PlayAreaHeight - 1);
 
-            if (foodLeft % 2 == 0)
+            if (foodX % 2 == 0)
             {
-                foodLeft++;
+                foodX++;
             }
 
             foreach (Point point in snake.Body)
             {
-                if (point.Left == foodLeft && point.Top == foodTop)
+                if (point.X == foodX && point.Y == foodY)
                 {
                     isValidFood = false;
                     break;
@@ -130,19 +130,19 @@ public class Engine
 
             if (isValidFood)
             {
-                avaiableFood = new(foodLeft, foodTop);
+                food = new(foodX, foodY);
                 break;
             }
         }
 
-        renderer.RenderFood(avaiableFood);
+        renderer.RenderFood(food);
     }
 
     private void CheckForFood()
     {
         Point snakeHead = snake.Head;
 
-        if (avaiableFood.Left == snakeHead.Left && avaiableFood.Top == snakeHead.Top)
+        if (food.X == snakeHead.X && food.Y == snakeHead.Y)
         {
             snake.IncreaseLength();
             gameSpeed -= 5;

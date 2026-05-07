@@ -1,3 +1,4 @@
+using System.Runtime.Versioning;
 using System.Text;
 using SimpleSnake.Core.Contracts;
 using SimpleSnake.Models;
@@ -13,8 +14,10 @@ public class ConsoleRenderer : IRenderer
     private int maxWidth;
     private int maxHeight;
 
-    public void Initialize(int maxWidth, int maxHeight)
+    [SupportedOSPlatform("windows")]
+    public void InitializeField(int maxWidth, int maxHeight)
     {
+        Console.BackgroundColor = ConsoleColor.Black;
         Console.CursorVisible = false;
         Console.Clear();
 
@@ -27,7 +30,7 @@ public class ConsoleRenderer : IRenderer
 
     public void RenderWalls(int maxWidth, int maxHeight)
     {
-        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.ForegroundColor = ConsoleColor.White;
 
         // Top wall
         for (int i = 0; i < maxWidth; i++)
@@ -58,17 +61,17 @@ public class ConsoleRenderer : IRenderer
         }
     }
 
-    public void RenderSnake(Snake snake, Point toRemove = null)
+    public void RenderSnake(Snake snake, Point? toRemove = null)
     {
         if (toRemove != null)
         {
-            Console.SetCursorPosition(toRemove.Left, toRemove.Top);
+            Console.SetCursorPosition(toRemove.X, toRemove.Y);
             Console.Write(' ');
         }
 
         foreach (Point point in snake.Body)
         {
-            Console.SetCursorPosition(point.Left, point.Top);
+            Console.SetCursorPosition(point.X, point.Y);
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.Write(SnakeSymbol);
         }
@@ -76,7 +79,7 @@ public class ConsoleRenderer : IRenderer
 
     public void RenderFood(Point food)
     {
-        Console.SetCursorPosition(food.Left, food.Top);
+        Console.SetCursorPosition(food.X, food.Y);
         Console.ForegroundColor = ConsoleColor.Red;
         Console.Write(FoodSymbol);
     }

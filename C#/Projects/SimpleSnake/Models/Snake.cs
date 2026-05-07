@@ -4,15 +4,15 @@ namespace SimpleSnake.Models;
 
 public class Snake
 {
-    public Snake(int startLeft, int startTop, int length)
+    public Snake(int startX, int startY, int length)
     {
         Direction = Direction.Right;
         Body = new();
-        Head = new(startLeft, startTop);
+        Head = new(startX, startY);
 
-        for (int i = startLeft - length + 1; i < startLeft; i++)
+        for (int i = startX - length + 1; i < startX; i++)
         {
-            Point tailPoint = new(i, startTop);
+            Point tailPoint = new(i, startY);
             Body.Enqueue(tailPoint);
         }
         Body.Enqueue(Head);
@@ -37,10 +37,10 @@ public class Snake
     {
         Point directionPoint = GetDirectionPoint();
 
-        int newHeadLeft = Head.Left + directionPoint.Left;
-        int newHeadTop = Head.Top + directionPoint.Top;
+        int newHeadX = Head.X + directionPoint.X;
+        int newHeadY = Head.Y + directionPoint.Y;
 
-        Head = new(newHeadLeft, newHeadTop);
+        Head = new(newHeadX, newHeadY);
     }
 
     private Point GetDirectionPoint()
