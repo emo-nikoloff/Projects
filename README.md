@@ -1,5 +1,5 @@
-# 🖥️ Personal Programming Projects
-Welcome to my personal programming projects repository! This repository contains various projects that I have created to practice and improve my skills in different programming languages.
+# 🕹️ Programming Playground Projects
+Welcome to my programming playground! This repository contains various small projects that I have created to practice and improve my skills in different programming languages.
 
 ---
 
@@ -9,12 +9,17 @@ The repository is organized into folders by programming language:
 - `C#/` - Projects written in **C#**
 - `Python/` - Projects written in **Python**
 
-Each folder contains individual projects with their own code files, and in some cases, additional resources or documentation.
+Each folder contains individual playground projects with their own code files.
 
 ---
 
 ## 🎯 Purpose
 The main goals of this repository are to:
 - Experiment with new programming concepts and techniques
-- Keep track of my personal coding projects
-- Share my work with others for learning or collaboration
+- Explore different languages, technologies, and approaches
+- Test ideas and build small proof-of-concept projects
+
+---
+
+## ⚠️ Projects State
+Some projects may be unfinished or abandoned, as they are primarily created for learning, experimentation, and testing ideas.
